@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "private": true,
+  "dependencies": {
+    "@prisma/client": "^2.20.1",
+    "@types/aws-lambda": "^8.10.72",
+    "@types/node": "^14.14.35",
+    "aws-sdk": "^2.904.0",
+    "prisma": "^2.20.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate deploy"
+  }
+}
