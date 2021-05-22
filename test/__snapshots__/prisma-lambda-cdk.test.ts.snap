@@ -21,28 +21,28 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameters8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196ArtifactHash4EC2C250": Object {
-      "Description": "Artifact hash for asset \\"8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196\\"",
+    "AssetParameters545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6ArtifactHash14D50DD2": Object {
+      "Description": "Artifact hash for asset \\"545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6\\"",
       "Type": "String",
     },
-    "AssetParameters8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196S3Bucket41C3AFEB": Object {
-      "Description": "S3 bucket for asset \\"8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196\\"",
+    "AssetParameters545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6S3BucketF43D4636": Object {
+      "Description": "S3 bucket for asset \\"545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6\\"",
       "Type": "String",
     },
-    "AssetParameters8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196S3VersionKeyA64CC001": Object {
-      "Description": "S3 key for asset version \\"8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196\\"",
+    "AssetParameters545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6S3VersionKeyD2D84B08": Object {
+      "Description": "S3 key for asset version \\"545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6\\"",
       "Type": "String",
     },
-    "AssetParametersbe53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309ArtifactHash2CE94296": Object {
-      "Description": "Artifact hash for asset \\"be53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309\\"",
+    "AssetParametersac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82abArtifactHash80CBD1C5": Object {
+      "Description": "Artifact hash for asset \\"ac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82ab\\"",
       "Type": "String",
     },
-    "AssetParametersbe53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309S3Bucket8A3F1F92": Object {
-      "Description": "S3 bucket for asset \\"be53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309\\"",
+    "AssetParametersac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82abS3BucketB13E5B1F": Object {
+      "Description": "S3 bucket for asset \\"ac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82ab\\"",
       "Type": "String",
     },
-    "AssetParametersbe53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309S3VersionKey734539F6": Object {
-      "Description": "S3 key for asset version \\"be53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309\\"",
+    "AssetParametersac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82abS3VersionKey08D0D433": Object {
+      "Description": "S3 key for asset version \\"ac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82ab\\"",
       "Type": "String",
     },
   },
@@ -54,7 +54,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersbe53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309S3Bucket8A3F1F92",
+            "Ref": "AssetParameters545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6S3BucketF43D4636",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -67,7 +67,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersbe53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309S3VersionKey734539F6",
+                          "Ref": "AssetParameters545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6S3VersionKeyD2D84B08",
                         },
                       ],
                     },
@@ -80,7 +80,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParametersbe53ad110fa689d943703b6ad541487ca45bba2b34f3d02a4efe5b2951066309S3VersionKey734539F6",
+                          "Ref": "AssetParameters545a709e19287c827c399f441cb2f921e93d684172b8781038238e5e74fddfa6S3VersionKeyD2D84B08",
                         },
                       ],
                     },
@@ -93,7 +93,19 @@ Object {
         "Environment": Object {
           "Variables": Object {
             "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-            "MYSQL_HOST": Object {
+            "DATABASE_ENGINE": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:engine::}}",
+                ],
+              ],
+            },
+            "DATABASE_HOST": Object {
               "Fn::Join": Array [
                 "",
                 Array [
@@ -105,7 +117,7 @@ Object {
                 ],
               ],
             },
-            "MYSQL_PASSWORD": Object {
+            "DATABASE_PASSWORD": Object {
               "Fn::Join": Array [
                 "",
                 Array [
@@ -117,7 +129,19 @@ Object {
                 ],
               ],
             },
-            "MYSQL_USER": Object {
+            "DATABASE_PORT": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:port::}}",
+                ],
+              ],
+            },
+            "DATABASE_USER": Object {
               "Fn::Join": Array [
                 "",
                 Array [
@@ -212,7 +236,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196S3Bucket41C3AFEB",
+            "Ref": "AssetParametersac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82abS3BucketB13E5B1F",
           },
           "S3Key": Object {
             "Fn::Join": Array [
@@ -225,7 +249,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196S3VersionKeyA64CC001",
+                          "Ref": "AssetParametersac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82abS3VersionKey08D0D433",
                         },
                       ],
                     },
@@ -238,7 +262,7 @@ Object {
                       "Fn::Split": Array [
                         "||",
                         Object {
-                          "Ref": "AssetParameters8f8ce8a07dc74af1732a83dacf8e4b71367f874af819800c611e6c6e5d24a196S3VersionKeyA64CC001",
+                          "Ref": "AssetParametersac26783d8e27bf20e1252e177c241b417202e8df5cdfdce9aea7de4f8fad82abS3VersionKey08D0D433",
                         },
                       ],
                     },
@@ -251,7 +275,19 @@ Object {
         "Environment": Object {
           "Variables": Object {
             "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-            "MYSQL_HOST": Object {
+            "DATABASE_ENGINE": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:engine::}}",
+                ],
+              ],
+            },
+            "DATABASE_HOST": Object {
               "Fn::Join": Array [
                 "",
                 Array [
@@ -263,7 +299,7 @@ Object {
                 ],
               ],
             },
-            "MYSQL_PASSWORD": Object {
+            "DATABASE_PASSWORD": Object {
               "Fn::Join": Array [
                 "",
                 Array [
@@ -275,7 +311,19 @@ Object {
                 ],
               ],
             },
-            "MYSQL_USER": Object {
+            "DATABASE_PORT": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:port::}}",
+                ],
+              ],
+            },
+            "DATABASE_USER": Object {
               "Fn::Join": Array [
                 "",
                 Array [
@@ -435,7 +483,7 @@ Object {
         "DBClusterIdentifier": Object {
           "Ref": "DatabaseCluster5B53A178",
         },
-        "DBInstanceClass": "db.t3.small",
+        "DBInstanceClass": "db.t3.medium",
         "DBSubnetGroupName": Object {
           "Ref": "DatabaseClusterSubnets5540150D",
         },
@@ -510,10 +558,15 @@ Object {
       },
       "Type": "AWS::EC2::SecurityGroup",
     },
-    "DatabaseSecurityGroupfromMyTestStackApplicationSecurityGroupBD072B8033063C943425": Object {
+    "DatabaseSecurityGroupfromMyTestStackApplicationSecurityGroupBD072B80IndirectPort695F14E8": Object {
       "Properties": Object {
-        "Description": "from MyTestStackApplicationSecurityGroupBD072B80:3306",
-        "FromPort": 3306,
+        "Description": "from MyTestStackApplicationSecurityGroupBD072B80:{IndirectPort}",
+        "FromPort": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseCluster5B53A178",
+            "Endpoint.Port",
+          ],
+        },
         "GroupId": Object {
           "Fn::GetAtt": Array [
             "DatabaseSecurityGroup5C91FDCB",
@@ -527,7 +580,12 @@ Object {
             "GroupId",
           ],
         },
-        "ToPort": 3306,
+        "ToPort": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseCluster5B53A178",
+            "Endpoint.Port",
+          ],
+        },
       },
       "Type": "AWS::EC2::SecurityGroupIngress",
     },
