@@ -6,10 +6,11 @@ import { PrismaFunction } from "./prisma-function";
 interface ApplicationProps {
   vpc: ec2.IVpc;
   databaseSecrets: secretsmanager.ISecret;
-  databaseSecurityGroup: ec2.ISecurityGroup;
 }
 
 export class Application extends cdk.Construct {
+  readonly lambdaSecurityGroup: ec2.ISecurityGroup;
+
   constructor(scope: cdk.Construct, id: string, props: ApplicationProps) {
     super(scope, id);
 
@@ -19,20 +20,20 @@ export class Application extends cdk.Construct {
       vpc: props.vpc,
     });
 
-    props.databaseSecurityGroup.addIngressRule(securityGroup, ec2.Port.tcp(3306));
-
     const handler = new PrismaFunction(this, "Handler", {
       entry: "./backend/handler.ts",
       memorySize: 256,
       timeout: cdk.Duration.seconds(15),
       vpc,
       securityGroups: [securityGroup],
-      mysqlHost: props.databaseSecrets.secretValueFromJson("host").toString(),
+      databaseHost: props.databaseSecrets.secretValueFromJson("host").toString(),
+      databasePort: props.databaseSecrets.secretValueFromJson("port").toString(),
+      databaseEngine: props.databaseSecrets.secretValueFromJson("engine").toString(),
       // We use the master user only to simplify this sample.
       // You should create a database user with minimal privileges for your application.
       // Also refer to: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.MasterAccounts.html
-      mysqlUserName: props.databaseSecrets.secretValueFromJson("username").toString(),
-      mysqlPassword: props.databaseSecrets.secretValueFromJson("password").toString(),
+      databaseUserName: props.databaseSecrets.secretValueFromJson("username").toString(),
+      databasePassword: props.databaseSecrets.secretValueFromJson("password").toString(),
       relativePathToPrisma: "backend",
     });
 
@@ -42,13 +43,17 @@ export class Application extends cdk.Construct {
       timeout: cdk.Duration.minutes(1),
       vpc,
       securityGroups: [securityGroup],
-      mysqlHost: props.databaseSecrets.secretValueFromJson("host").toString(),
-      mysqlUserName: props.databaseSecrets.secretValueFromJson("username").toString(),
-      mysqlPassword: props.databaseSecrets.secretValueFromJson("password").toString(),
+      databaseHost: props.databaseSecrets.secretValueFromJson("host").toString(),
+      databasePort: props.databaseSecrets.secretValueFromJson("port").toString(),
+      databaseEngine: props.databaseSecrets.secretValueFromJson("engine").toString(),
+      databaseUserName: props.databaseSecrets.secretValueFromJson("username").toString(),
+      databasePassword: props.databaseSecrets.secretValueFromJson("password").toString(),
       relativePathToPrisma: "backend",
     });
 
     new cdk.CfnOutput(this, `HandlerLambdaArn`, { value: handler.functionArn });
     new cdk.CfnOutput(this, `MigrationRunnerLambdaArn`, { value: migrationRunner.functionArn });
+
+    this.lambdaSecurityGroup = securityGroup;
   }
 }

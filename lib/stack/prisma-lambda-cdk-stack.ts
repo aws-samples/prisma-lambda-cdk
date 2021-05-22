@@ -14,7 +14,8 @@ export class PrismaLambdaCdkStack extends cdk.Stack {
     const application = new Application(this, `Application`, {
       vpc,
       databaseSecrets: database.secret,
-      databaseSecurityGroup: database.securityGroup,
     });
+
+    database.allowInboundAccess(application.lambdaSecurityGroup);
   }
 }

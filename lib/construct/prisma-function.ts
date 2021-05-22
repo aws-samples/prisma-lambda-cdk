@@ -3,9 +3,11 @@ import * as cdk from "@aws-cdk/core";
 import * as lambdanode from "@aws-cdk/aws-lambda-nodejs";
 
 interface PrismaFunctionProps extends lambdanode.NodejsFunctionProps {
-  mysqlHost: string;
-  mysqlUserName: string;
-  mysqlPassword: string;
+  databaseHost: string;
+  databasePort: string;
+  databaseEngine: string;  // should be "mysql" or "postgres"
+  databaseUserName: string;
+  databasePassword: string;
   /**
    * relative path of the directory which contains prisma directory from your CDK root directory.
    */
@@ -18,9 +20,11 @@ export class PrismaFunction extends lambdanode.NodejsFunction {
       ...props,
       environment: {
         ...props.environment,
-        MYSQL_HOST: props.mysqlHost,
-        MYSQL_USER: props.mysqlUserName,
-        MYSQL_PASSWORD: props.mysqlPassword,
+        DATABASE_HOST: props.databaseHost,
+        DATABASE_PORT: props.databasePort,
+        DATABASE_ENGINE: props.databaseEngine,
+        DATABASE_USER: props.databaseUserName,
+        DATABASE_PASSWORD: props.databasePassword,
       },
       bundling: {
         nodeModules: ["prisma", "@prisma/client"].concat(props.bundling?.nodeModules ?? []),
