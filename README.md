@@ -124,8 +124,11 @@ rm -rf prisma/migrations
 # generate migration files
 npx prisma migrate dev --name initial-state
 
+# cd to CDK root directory
+cd ../
+# destroy old stack if any
+npx cdk destroy --force
 # deploy the new postgres system
-cd ..
 npx cdk deploy
 ```
 

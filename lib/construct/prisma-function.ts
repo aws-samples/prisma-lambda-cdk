@@ -5,7 +5,7 @@ import * as lambdanode from "@aws-cdk/aws-lambda-nodejs";
 interface PrismaFunctionProps extends lambdanode.NodejsFunctionProps {
   databaseHost: string;
   databasePort: string;
-  databaseEngine: string;  // should be "mysql" or "postgres"
+  databaseEngine: string; // should be "mysql" or "postgres"
   databaseUserName: string;
   databasePassword: string;
   /**
