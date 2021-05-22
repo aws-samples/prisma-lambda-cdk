@@ -24,11 +24,6 @@ export const handler: Handler = async (event, _) => {
       execFile(
         path.resolve("./node_modules/prisma/build/index.js"),
         ["migrate", command].concat(options),
-        {
-          env: {
-            ...process.env,
-          },
-        },
         (error, stdout, stderr) => {
           console.log(stdout);
           if (error != null) {

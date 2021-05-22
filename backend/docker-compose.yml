@@ -5,11 +5,22 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "db_data:/var/lib/mysql"
+      - "mysql_data:/var/lib/mysql"
     restart: always
     environment: 
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: admin
       MYSQL_PASSWORD: password
+  postgres:
+    image: "public.ecr.aws/bitnami/postgresql:12.7.0"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: root
 volumes:
-  db_data: {}
+  mysql_data:
+  postgres_data:
