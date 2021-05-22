@@ -1,11 +1,10 @@
 import * as cdk from "@aws-cdk/core";
 import * as ec2 from "@aws-cdk/aws-ec2";
-import * as secretsmanager from "@aws-cdk/aws-secretsmanager";
-import { PrismaFunction } from "./prisma-function";
+import { DatabaseConnectionProps, PrismaFunction } from "./prisma-function";
 
 interface ApplicationProps {
   vpc: ec2.IVpc;
-  databaseSecrets: secretsmanager.ISecret;
+  database: DatabaseConnectionProps;
 }
 
 export class Application extends cdk.Construct {
@@ -26,14 +25,7 @@ export class Application extends cdk.Construct {
       timeout: cdk.Duration.seconds(15),
       vpc,
       securityGroups: [securityGroup],
-      databaseHost: props.databaseSecrets.secretValueFromJson("host").toString(),
-      databasePort: props.databaseSecrets.secretValueFromJson("port").toString(),
-      databaseEngine: props.databaseSecrets.secretValueFromJson("engine").toString(),
-      // We use the master user only to simplify this sample.
-      // You should create a database user with minimal privileges for your application.
-      // Also refer to: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.MasterAccounts.html
-      databaseUserName: props.databaseSecrets.secretValueFromJson("username").toString(),
-      databasePassword: props.databaseSecrets.secretValueFromJson("password").toString(),
+      database: props.database,
       relativePathToPrisma: "backend",
     });
 
@@ -43,11 +35,7 @@ export class Application extends cdk.Construct {
       timeout: cdk.Duration.minutes(1),
       vpc,
       securityGroups: [securityGroup],
-      databaseHost: props.databaseSecrets.secretValueFromJson("host").toString(),
-      databasePort: props.databaseSecrets.secretValueFromJson("port").toString(),
-      databaseEngine: props.databaseSecrets.secretValueFromJson("engine").toString(),
-      databaseUserName: props.databaseSecrets.secretValueFromJson("username").toString(),
-      databasePassword: props.databaseSecrets.secretValueFromJson("password").toString(),
+      database: props.database,
       relativePathToPrisma: "backend",
     });
 
