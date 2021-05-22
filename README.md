@@ -70,7 +70,10 @@ aws lambda invoke --function-name ApplicationMigrationRunnerLambdaArn response.j
 Please replace `ApplicationMigrationRunnerLambdaArn` with the actual ARN you wrote down in the previous deployment step.
 
 The invocation should complete in 10 seconds and return response `200`.
-Now you successfully initalized a database and created a table.
+You can also check the detailed execution logs on Amazon CloudWatch Logs console.
+Please refer to [Accessing Amazon CloudWatch logs for AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html) for how to view logs for the Lambda functions.
+
+Now that you successfully initalized a database and created a table, let's check if the system is working as expected by creating some records.
 
 ### Create records
 You can create a record to the table by invoking another Lambda function by the following command:
@@ -93,6 +96,39 @@ aws lambda invoke --function-name ApplicationHandlerLambdaArn --cli-binary-forma
 **NOTE**: You would't need `cli-binary-format` parameter if you use AWS CLI v1.
 
 Check `response.json` and see the records you created.
+
+### (Optional) Using Postgres
+If you want to use Postgres instead of MySQL, you must change the following code:
+
+* [`backend/prisma/schema.prisma`](backend/prisma/schema.prisma)
+  * Set `privider` to `postgresql`
+* [`backend/.env`](backend/.env)
+  * Replace `DATABASE_ENGNIE` to `postgres` and `DATABASE_PORT` to `5432` (or a port number you use)
+* [`lib/construct/database.ts`](lib/construct/database.ts)
+  * Set `engine` to a postgres version you want to use
+  * Please refer to [class `AuroraPostgresEngineVersion` document](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-rds.AuroraPostgresEngineVersion.html) for the available values
+
+**NOTE**: Not all the combination of DB instance types and DB engines are supported in Amazon Aurora.
+Please check [Supported DB engines for DB instance classes](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.SupportAurora) and set `instanceType` accordingly.
+
+After that, you must generate migration and re-deploy the system. Please run the following commands:
+
+```sh
+cd backend
+# run a local postgres server
+docker-compose up
+
+# remove existing migrations directory
+rm -rf prisma/migrations
+
+# generate migration files
+npx prisma migrate dev --name initial-state
+
+# deploy the new postgres system
+cd ..
+npx cdk deploy
+```
+
 
 ## How it works
 ### Lambda deployment
