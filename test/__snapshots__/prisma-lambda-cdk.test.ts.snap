@@ -106,15 +106,9 @@ Object {
               ],
             },
             "DATABASE_HOST": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{{resolve:secretsmanager:",
-                  Object {
-                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
-                  },
-                  ":SecretString:host::}}",
-                ],
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Address",
               ],
             },
             "DATABASE_PASSWORD": Object {
@@ -130,15 +124,9 @@ Object {
               ],
             },
             "DATABASE_PORT": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{{resolve:secretsmanager:",
-                  Object {
-                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
-                  },
-                  ":SecretString:port::}}",
-                ],
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Port",
               ],
             },
             "DATABASE_USER": Object {
@@ -288,15 +276,9 @@ Object {
               ],
             },
             "DATABASE_HOST": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{{resolve:secretsmanager:",
-                  Object {
-                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
-                  },
-                  ":SecretString:host::}}",
-                ],
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Address",
               ],
             },
             "DATABASE_PASSWORD": Object {
@@ -312,15 +294,9 @@ Object {
               ],
             },
             "DATABASE_PORT": Object {
-              "Fn::Join": Array [
-                "",
-                Array [
-                  "{{resolve:secretsmanager:",
-                  Object {
-                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
-                  },
-                  ":SecretString:port::}}",
-                ],
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Port",
               ],
             },
             "DATABASE_USER": Object {
