@@ -16,7 +16,6 @@ interface PrismaFunctionProps extends lambdanode.NodejsFunctionProps {
 
 export class PrismaFunction extends lambdanode.NodejsFunction {
   constructor(scope: cdk.Construct, id: string, props: PrismaFunctionProps) {
-
     super(scope, id, {
       ...props,
       environment: {
