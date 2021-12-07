@@ -26,7 +26,7 @@ export class Application extends cdk.Construct {
       vpc,
       securityGroups: [securityGroup],
       database: props.database,
-      relativePathToPrisma: "backend",
+      depsLockFilePath: "./backend/package-lock.json",
     });
 
     const migrationRunner = new PrismaFunction(this, "MigrationRunner", {
@@ -36,7 +36,7 @@ export class Application extends cdk.Construct {
       vpc,
       securityGroups: [securityGroup],
       database: props.database,
-      relativePathToPrisma: "backend",
+      depsLockFilePath: "./backend/package-lock.json",
     });
 
     new cdk.CfnOutput(this, `HandlerLambdaArn`, { value: handler.functionArn });
