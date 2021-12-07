@@ -12,10 +12,6 @@ export interface DatabaseConnectionProps {
 
 interface PrismaFunctionProps extends lambdanode.NodejsFunctionProps {
   database: DatabaseConnectionProps;
-  /**
-   * relative path of the directory which contains prisma directory from your CDK root directory.
-   */
-  relativePathToPrisma: string;
 }
 
 export class PrismaFunction extends lambdanode.NodejsFunction {
@@ -34,8 +30,10 @@ export class PrismaFunction extends lambdanode.NodejsFunction {
         nodeModules: ["prisma", "@prisma/client"].concat(props.bundling?.nodeModules ?? []),
         commandHooks: {
           beforeInstall: (i, o) => [
-            `cp -r ${path.join(i, props.relativePathToPrisma, "prisma")} ${o}`,
-            `cp ${path.join(i, props.relativePathToPrisma, ".env")} ${o}`,
+            // Copy prisma directory and .env file to Lambda code asset
+            // these directory/file must be located in the same directory as your Lambda code
+            `cp -r ${path.join(i, "prisma")} ${o}`,
+            `cp ${path.join(i, ".env")} ${o}`,
           ],
           beforeBundling: (i, o) => [],
           afterBundling: (i, o) => [],
