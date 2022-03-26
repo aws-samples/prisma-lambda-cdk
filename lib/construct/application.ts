@@ -1,16 +1,17 @@
-import * as cdk from "@aws-cdk/core";
-import * as ec2 from "@aws-cdk/aws-ec2";
+import * as cdk from 'aws-cdk-lib';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { DatabaseConnectionProps, PrismaFunction } from "./prisma-function";
+import { Construct } from 'constructs';
 
 interface ApplicationProps {
   vpc: ec2.IVpc;
   database: DatabaseConnectionProps;
 }
 
-export class Application extends cdk.Construct {
+export class Application extends Construct {
   readonly lambdaSecurityGroup: ec2.ISecurityGroup;
 
-  constructor(scope: cdk.Construct, id: string, props: ApplicationProps) {
+  constructor(scope: Construct, id: string, props: ApplicationProps) {
     super(scope, id);
 
     const vpc = props.vpc;

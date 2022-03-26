@@ -1,6 +1,6 @@
 import * as path from "path";
-import * as cdk from "@aws-cdk/core";
-import * as lambdanode from "@aws-cdk/aws-lambda-nodejs";
+import * as lambdanode from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Construct } from 'constructs';
 
 export interface DatabaseConnectionProps {
   host: string;
@@ -15,7 +15,7 @@ interface PrismaFunctionProps extends lambdanode.NodejsFunctionProps {
 }
 
 export class PrismaFunction extends lambdanode.NodejsFunction {
-  constructor(scope: cdk.Construct, id: string, props: PrismaFunctionProps) {
+  constructor(scope: Construct, id: string, props: PrismaFunctionProps) {
     super(scope, id, {
       ...props,
       environment: {
