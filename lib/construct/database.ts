@@ -1,18 +1,18 @@
-import * as cdk from "@aws-cdk/core";
-import * as rds from "@aws-cdk/aws-rds";
-import * as ec2 from "@aws-cdk/aws-ec2";
-import * as secretsmanager from "@aws-cdk/aws-secretsmanager";
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as rds from 'aws-cdk-lib/aws-rds';
+import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+import { Construct } from 'constructs';
 
 interface DatabaseProps {
   vpc: ec2.IVpc;
 }
 
-export class Database extends cdk.Construct {
+export class Database extends Construct {
   readonly cluster: rds.DatabaseCluster;
   readonly secret: secretsmanager.ISecret;
   private readonly securityGroup: ec2.ISecurityGroup;
 
-  constructor(scope: cdk.Construct, id: string, props: DatabaseProps) {
+  constructor(scope: Construct, id: string, props: DatabaseProps) {
     super(scope, id);
 
     const vpc = props.vpc;
