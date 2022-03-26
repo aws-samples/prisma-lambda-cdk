@@ -21,29 +21,10 @@ Object {
     },
   },
   "Parameters": Object {
-    "AssetParameters8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0ArtifactHash0A051FFD": Object {
-      "Description": "Artifact hash for asset \\"8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0\\"",
-      "Type": "String",
-    },
-    "AssetParameters8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0S3Bucket276481B3": Object {
-      "Description": "S3 bucket for asset \\"8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0\\"",
-      "Type": "String",
-    },
-    "AssetParameters8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0S3VersionKey95662F78": Object {
-      "Description": "S3 key for asset version \\"8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0\\"",
-      "Type": "String",
-    },
-    "AssetParametersf91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77ArtifactHash1B36FD1E": Object {
-      "Description": "Artifact hash for asset \\"f91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77\\"",
-      "Type": "String",
-    },
-    "AssetParametersf91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77S3BucketC1D68860": Object {
-      "Description": "S3 bucket for asset \\"f91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77\\"",
-      "Type": "String",
-    },
-    "AssetParametersf91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77S3VersionKeyAA5F2C7E": Object {
-      "Description": "S3 key for asset version \\"f91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77\\"",
-      "Type": "String",
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
   "Resources": Object {
@@ -54,41 +35,9 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParametersf91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77S3BucketC1D68860",
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParametersf91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77S3VersionKeyAA5F2C7E",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParametersf91cee891b234c0f198a48c8b0dc30af476ae46af4edd1ea5a59b4212c15aa77S3VersionKeyAA5F2C7E",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
+          "S3Key": "b274aa75c35308dfbca8a98fd8a1ed3a11e3d97e8a7a5dc7de0d8c2358b8fabb.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -224,41 +173,9 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
-            "Ref": "AssetParameters8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0S3Bucket276481B3",
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": Object {
-            "Fn::Join": Array [
-              "",
-              Array [
-                Object {
-                  "Fn::Select": Array [
-                    0,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0S3VersionKey95662F78",
-                        },
-                      ],
-                    },
-                  ],
-                },
-                Object {
-                  "Fn::Select": Array [
-                    1,
-                    Object {
-                      "Fn::Split": Array [
-                        "||",
-                        Object {
-                          "Ref": "AssetParameters8a9f195967cbe046224915850aa2ad6ead7c510697f13844b86305d25b4c7db0S3VersionKey95662F78",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            ],
-          },
+          "S3Key": "0a81e317e1d85967d7f2aab2aefb3b7e2b8122fce1d00fdd3230223cc6906fa9.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -950,6 +867,33 @@ Object {
         },
       },
       "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
     },
   },
 }
