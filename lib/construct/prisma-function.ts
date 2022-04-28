@@ -30,10 +30,9 @@ export class PrismaFunction extends lambdanode.NodejsFunction {
         nodeModules: ["prisma", "@prisma/client"].concat(props.bundling?.nodeModules ?? []),
         commandHooks: {
           beforeInstall: (i, o) => [
-            // Copy prisma directory and .env file to Lambda code asset
-            // these directory/file must be located in the same directory as your Lambda code
+            // Copy prisma directory to Lambda code asset
+            // the directory must be located at the same directory as your Lambda code
             `cp -r ${path.join(i, "prisma")} ${o}`,
-            `cp ${path.join(i, ".env")} ${o}`,
           ],
           beforeBundling: (i, o) => [],
           afterBundling: (i, o) => [],

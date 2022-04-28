@@ -28,6 +28,281 @@ Object {
     },
   },
   "Resources": Object {
+    "ApplicationDockerHandlerF8248C01": Object {
+      "DependsOn": Array [
+        "ApplicationDockerHandlerServiceRole80C82910",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ImageUri": Object {
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:119e4c36b73f21aef50551e82d3a4b9e727e1a9b2d30e8bd5f44cea50b73d579",
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "DATABASE_ENGINE": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:engine::}}",
+                ],
+              ],
+            },
+            "DATABASE_HOST": Object {
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Address",
+              ],
+            },
+            "DATABASE_PASSWORD": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:password::}}",
+                ],
+              ],
+            },
+            "DATABASE_PORT": Object {
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Port",
+              ],
+            },
+            "DATABASE_USER": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:username::}}",
+                ],
+              ],
+            },
+          },
+        },
+        "MemorySize": 256,
+        "PackageType": "Image",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ApplicationDockerHandlerServiceRole80C82910",
+            "Arn",
+          ],
+        },
+        "Timeout": 15,
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "ApplicationSecurityGroup0110FDEE",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            Object {
+              "Ref": "VpcPrivateSubnet1Subnet536B997A",
+            },
+            Object {
+              "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ApplicationDockerHandlerServiceRole80C82910": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ApplicationDockerMigrationRunner881B43FB": Object {
+      "DependsOn": Array [
+        "ApplicationDockerMigrationRunnerServiceRole6F7AE92F",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "ImageUri": Object {
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:119e4c36b73f21aef50551e82d3a4b9e727e1a9b2d30e8bd5f44cea50b73d579",
+          },
+        },
+        "Environment": Object {
+          "Variables": Object {
+            "DATABASE_ENGINE": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:engine::}}",
+                ],
+              ],
+            },
+            "DATABASE_HOST": Object {
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Address",
+              ],
+            },
+            "DATABASE_PASSWORD": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:password::}}",
+                ],
+              ],
+            },
+            "DATABASE_PORT": Object {
+              "Fn::GetAtt": Array [
+                "DatabaseCluster5B53A178",
+                "Endpoint.Port",
+              ],
+            },
+            "DATABASE_USER": Object {
+              "Fn::Join": Array [
+                "",
+                Array [
+                  "{{resolve:secretsmanager:",
+                  Object {
+                    "Ref": "DatabaseClusterSecretAttachmentDC8466C0",
+                  },
+                  ":SecretString:username::}}",
+                ],
+              ],
+            },
+          },
+        },
+        "ImageConfig": Object {
+          "Command": Array [
+            "migration-runner.handler",
+          ],
+        },
+        "MemorySize": 256,
+        "PackageType": "Image",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "ApplicationDockerMigrationRunnerServiceRole6F7AE92F",
+            "Arn",
+          ],
+        },
+        "Timeout": 60,
+        "VpcConfig": Object {
+          "SecurityGroupIds": Array [
+            Object {
+              "Fn::GetAtt": Array [
+                "ApplicationSecurityGroup0110FDEE",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": Array [
+            Object {
+              "Ref": "VpcPrivateSubnet1Subnet536B997A",
+            },
+            Object {
+              "Ref": "VpcPrivateSubnet2Subnet3788AAA1",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ApplicationDockerMigrationRunnerServiceRole6F7AE92F": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
     "ApplicationHandler5249A5A1": Object {
       "DependsOn": Array [
         "ApplicationHandlerServiceRole1EE6212A",
@@ -37,7 +312,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "b274aa75c35308dfbca8a98fd8a1ed3a11e3d97e8a7a5dc7de0d8c2358b8fabb.zip",
+          "S3Key": "ee6000c719c18dc2a0a58404b6fb13f0d940297ce02af9e25ab27c7b042bcc9b.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -175,7 +450,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "0a81e317e1d85967d7f2aab2aefb3b7e2b8122fce1d00fdd3230223cc6906fa9.zip",
+          "S3Key": "47d3a57675705d6b0f6aa21aefadc119cd030bca8f20cf1a79dee4e5688c7fa0.zip",
         },
         "Environment": Object {
           "Variables": Object {

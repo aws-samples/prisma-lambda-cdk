@@ -146,6 +146,15 @@ That's why we copy `schema.prisma` before `npm install` by specifying [`ICommand
 
 Finally, you must copy also `.env` file to load `DATABASE_URL` environment variable. If there's any `.env` file when running `npm install`, Prisma "marks" it and loads it automatically at runtime.
 
+### Using Docker Lambda
+If you think the above process to bundle Node.js code into a zip file with prisma dependencies too complex and difficult to manage, Docker Lambda is a way to go. 
+
+Using Docker container, the bundling process becomes much simpler; you don't need to hack `NodejsFunction` to properly install `@prisma/client` package, and you can just install all the dependencies with `npm ci`. 
+
+Another advantage of Docker bundling is that build process is much faster than `NodejsFuntion`. With `NodejsFunction`, `npm ci` runs every time we synthesize CDK assembly and it takes 30~60 seconds to finish, whereas with Docker bundling `npm ci` runs only when `package-lock.json` or `schema.prisma` changes. When we build CDK frequently for example with `cdk watch`, the difference will become very huge.
+
+You can try Docker bundling easily with this sample. The Dockerfile is located at [`backend/Dockerfile`](./backend/Dockerfile), and the actual construct to define Docker Lambda functions are in [`lib/construct/application.ts`](lib/construct/application.ts).
+
 ### Schema migration
 When you want to modify `prisma.schema`, you can apply the changes with the following steps:
 
