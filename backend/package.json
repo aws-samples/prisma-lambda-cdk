@@ -3,16 +3,19 @@
   "private": true,
   "dependencies": {
     "@prisma/client": "^3.0.0",
-    "@types/aws-lambda": "^8.10.72",
-    "@types/node": "^14.14.35",
-    "aws-sdk": "^2.904.0",
-    "prisma": "^3.0.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "aws-sdk": "^2.904.0"
   },
   "scripts": {
     "build": "tsc",
     "generate": "prisma generate",
     "migrate": "prisma migrate deploy"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.72",
+    "@types/node": "^14.14.35",
+    "prisma": "^3.0.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3",
+    "esbuild": "^0.14.38"
   }
 }
