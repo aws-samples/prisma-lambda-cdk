@@ -32,7 +32,7 @@ export class PrismaFunction extends lambdanode.NodejsFunction {
           beforeInstall: (i, o) => [
             // Copy prisma directory to Lambda code asset
             // the directory must be located at the same directory as your Lambda code
-            `cp -r ${path.join(i, "prisma")} ${o}`,
+            `cp -r ${i}/prisma ${o}`,
           ],
           beforeBundling: (i, o) => [],
           afterBundling: (i, o) => [],
