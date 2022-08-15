@@ -16,7 +16,7 @@ export const handler: Handler = async (event, _) => {
     options = ["--force", "--skip-generate"];
   }
 
-  // Currently we don't have any direct method to invoke prisma migration programatically.
+  // Currently we don't have any direct method to invoke prisma migration programmatically.
   // As a workaround, we spawn migration script as a child process and wait for its completion.
   // Please also refer to the following GitHub issue: https://github.com/prisma/prisma/issues/4703
   try {
