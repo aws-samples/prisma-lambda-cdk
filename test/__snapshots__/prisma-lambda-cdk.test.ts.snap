@@ -35,7 +35,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:119e4c36b73f21aef50551e82d3a4b9e727e1a9b2d30e8bd5f44cea50b73d579",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:59b0f30b97d003bc86b74ef194090218f1b7670af8ddc29147bddb2680375006",
           },
         },
         "Environment": Object {
@@ -170,7 +170,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:119e4c36b73f21aef50551e82d3a4b9e727e1a9b2d30e8bd5f44cea50b73d579",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:59b0f30b97d003bc86b74ef194090218f1b7670af8ddc29147bddb2680375006",
           },
         },
         "Environment": Object {
@@ -312,7 +312,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "ee6000c719c18dc2a0a58404b6fb13f0d940297ce02af9e25ab27c7b042bcc9b.zip",
+          "S3Key": "384da24b4ea40abe2114d6d267b50bbc34509ef9ec40ff7880835d4c90674d0a.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -450,7 +450,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "47d3a57675705d6b0f6aa21aefadc119cd030bca8f20cf1a79dee4e5688c7fa0.zip",
+          "S3Key": "a0fe7b119b65b184af01e2fd1f1a65ab671464ae66b3c7af50754b8433b0ee6d.zip",
         },
         "Environment": Object {
           "Variables": Object {
