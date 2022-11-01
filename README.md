@@ -102,7 +102,7 @@ If you want to use Postgres instead of MySQL, you must change the following code
 
 * [`backend/prisma/schema.prisma`](backend/prisma/schema.prisma)
   * Set `privider` to `postgresql`
-* [`backend/.env`](backend/.env)
+* [`backend/prisma/.env`](backend/prisma/.env)
   * Replace `DATABASE_ENGNIE` to `postgres` and `DATABASE_PORT` to `5432` (or a port number you use)
 * [`lib/construct/database.ts`](lib/construct/database.ts)
   * Set `engine` to a postgres version you want to use
