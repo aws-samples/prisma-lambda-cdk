@@ -3,7 +3,7 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import { DatabaseConnectionProps, PrismaFunction } from "./prisma-function";
 import { Construct } from "constructs";
 import { DockerPrismaFunction } from "./docker-prisma-function";
-import { DockerImageCode } from "aws-cdk-lib/aws-lambda";
+import { DockerImageCode, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Platform } from "aws-cdk-lib/aws-ecr-assets";
 
 interface ApplicationProps {
@@ -27,6 +27,7 @@ export class Application extends Construct {
     const handler = new PrismaFunction(this, "Handler", {
       entry: "./backend/handler.ts",
       memorySize: 256,
+      runtime: Runtime.NODEJS_18_X,
       timeout: cdk.Duration.seconds(15),
       vpc,
       securityGroups: [securityGroup],
@@ -37,6 +38,7 @@ export class Application extends Construct {
     const migrationRunner = new PrismaFunction(this, "MigrationRunner", {
       entry: "./backend/migration-runner.ts",
       memorySize: 256,
+      runtime: Runtime.NODEJS_18_X,
       timeout: cdk.Duration.minutes(1),
       vpc,
       securityGroups: [securityGroup],

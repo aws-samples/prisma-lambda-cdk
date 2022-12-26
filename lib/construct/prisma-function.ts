@@ -1,6 +1,5 @@
-import * as path from "path";
-import * as lambdanode from 'aws-cdk-lib/aws-lambda-nodejs';
-import { Construct } from 'constructs';
+import * as lambdanode from "aws-cdk-lib/aws-lambda-nodejs";
+import { Construct } from "constructs";
 
 export interface DatabaseConnectionProps {
   host: string;
