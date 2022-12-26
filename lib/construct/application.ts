@@ -4,6 +4,7 @@ import { DatabaseConnectionProps, PrismaFunction } from "./prisma-function";
 import { Construct } from "constructs";
 import { DockerPrismaFunction } from "./docker-prisma-function";
 import { DockerImageCode } from "aws-cdk-lib/aws-lambda";
+import { Platform } from "aws-cdk-lib/aws-ecr-assets";
 
 interface ApplicationProps {
   vpc: ec2.IVpc;
@@ -45,7 +46,7 @@ export class Application extends Construct {
 
     // Docker bundle
     new DockerPrismaFunction(this, "DockerHandler", {
-      code: DockerImageCode.fromImageAsset("./backend"),
+      code: DockerImageCode.fromImageAsset("./backend", { platform: Platform.LINUX_AMD64 }),
       memorySize: 256,
       timeout: cdk.Duration.seconds(15),
       vpc,
@@ -54,7 +55,10 @@ export class Application extends Construct {
     });
 
     new DockerPrismaFunction(this, "DockerMigrationRunner", {
-      code: DockerImageCode.fromImageAsset("./backend", { cmd: ["migration-runner.handler"] }),
+      code: DockerImageCode.fromImageAsset("./backend", {
+        cmd: ["migration-runner.handler"],
+        platform: Platform.LINUX_AMD64,
+      }),
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
       vpc,
