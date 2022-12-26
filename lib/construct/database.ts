@@ -22,7 +22,7 @@ export class Database extends Construct {
     });
 
     const cluster = new rds.DatabaseCluster(this, `Cluster`, {
-      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_09_1 }),
+      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_10_2 }),
       // Please read README.md ### Using Postgres section if you want to use Postgres
       // engine: rds.DatabaseClusterEngine.auroraPostgres({ version: rds.AuroraPostgresEngineVersion.VER_12_4 }),
       instanceProps: {
