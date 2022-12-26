@@ -4,23 +4,24 @@ jobs:
   Build-and-Test-CDK:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: "14.x"
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test
+          node-version: "16.x"
+      - run: |
+          npm ci
+          npm run build
+          npm run test
   Build-and-Test-Application:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: "14.x"
-      - run: cd backend
-      - run: npm ci
-      - run: npm run build
-    # - run: npm run test
+          node-version: "16.x"
+      - run: |
+          npm ci
+          npm run build
+        working-directory: ./backend
