@@ -31,11 +31,15 @@ Object {
     "ApplicationDockerHandlerF8248C01": Object {
       "DependsOn": Array [
         "ApplicationDockerHandlerServiceRole80C82910",
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:59b0f30b97d003bc86b74ef194090218f1b7670af8ddc29147bddb2680375006",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:81bcb22d8ed397b9aada7a54521ff2df2e9eeb4354f5ff7b8215e2d1bddb2768",
           },
         },
         "Environment": Object {
@@ -121,6 +125,12 @@ Object {
       "Type": "AWS::Lambda::Function",
     },
     "ApplicationDockerHandlerServiceRole80C82910": Object {
+      "DependsOn": Array [
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -166,11 +176,15 @@ Object {
     "ApplicationDockerMigrationRunner881B43FB": Object {
       "DependsOn": Array [
         "ApplicationDockerMigrationRunnerServiceRole6F7AE92F",
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:59b0f30b97d003bc86b74ef194090218f1b7670af8ddc29147bddb2680375006",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:81bcb22d8ed397b9aada7a54521ff2df2e9eeb4354f5ff7b8215e2d1bddb2768",
           },
         },
         "Environment": Object {
@@ -261,6 +275,12 @@ Object {
       "Type": "AWS::Lambda::Function",
     },
     "ApplicationDockerMigrationRunnerServiceRole6F7AE92F": Object {
+      "DependsOn": Array [
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -306,13 +326,17 @@ Object {
     "ApplicationHandler5249A5A1": Object {
       "DependsOn": Array [
         "ApplicationHandlerServiceRole1EE6212A",
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "384da24b4ea40abe2114d6d267b50bbc34509ef9ec40ff7880835d4c90674d0a.zip",
+          "S3Key": "abf77fc1ab9242081f064857c1a455e6abe1ed9f0a2c9a5bb41abe009a934157.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -399,6 +423,12 @@ Object {
       "Type": "AWS::Lambda::Function",
     },
     "ApplicationHandlerServiceRole1EE6212A": Object {
+      "DependsOn": Array [
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -444,13 +474,17 @@ Object {
     "ApplicationMigrationRunner12D5DD07": Object {
       "DependsOn": Array [
         "ApplicationMigrationRunnerServiceRoleCD71EB3F",
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": Object {
         "Code": Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "a0fe7b119b65b184af01e2fd1f1a65ab671464ae66b3c7af50754b8433b0ee6d.zip",
+          "S3Key": "2a8d714c8eb04dfa7dc9b69ab12d865a7e6c23e432c85ea905603b7b0aeaa916.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -537,6 +571,12 @@ Object {
       "Type": "AWS::Lambda::Function",
     },
     "ApplicationMigrationRunnerServiceRoleCD71EB3F": Object {
+      "DependsOn": Array [
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
+      ],
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -604,7 +644,7 @@ Object {
           "Ref": "DatabaseClusterSubnets5540150D",
         },
         "Engine": "aurora-mysql",
-        "EngineVersion": "5.7.mysql_aurora.2.09.1",
+        "EngineVersion": "5.7.mysql_aurora.2.10.2",
         "MasterUserPassword": Object {
           "Fn::Join": Array [
             "",
@@ -646,7 +686,9 @@ Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
         "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
         "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": Object {
         "DBClusterIdentifier": Object {
@@ -657,7 +699,6 @@ Object {
           "Ref": "DatabaseClusterSubnets5540150D",
         },
         "Engine": "aurora-mysql",
-        "EngineVersion": "5.7.mysql_aurora.2.09.1",
         "PubliclyAccessible": false,
       },
       "Type": "AWS::RDS::DBInstance",
@@ -952,6 +993,10 @@ Object {
       "Type": "AWS::EC2::EIP",
     },
     "VpcPublicSubnet1NATGateway4D7517AA": Object {
+      "DependsOn": Array [
+        "VpcPublicSubnet1DefaultRoute3DA9E72A",
+        "VpcPublicSubnet1RouteTableAssociation97140677",
+      ],
       "Properties": Object {
         "AllocationId": Object {
           "Fn::GetAtt": Array [
@@ -1056,6 +1101,10 @@ Object {
       "Type": "AWS::EC2::EIP",
     },
     "VpcPublicSubnet2NATGateway9182C01D": Object {
+      "DependsOn": Array [
+        "VpcPublicSubnet2DefaultRoute97F91067",
+        "VpcPublicSubnet2RouteTableAssociationDD5762D8",
+      ],
       "Properties": Object {
         "AllocationId": Object {
           "Fn::GetAtt": Array [
