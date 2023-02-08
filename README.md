@@ -7,6 +7,8 @@ Prisma is an open source ORM for MySQL, PostgreSQL, etc written in TypeScript an
 
 By this sample, you can see how a Lambda function which uses Prisma can be deployed with CDK, how Prisma migration can be invoked from Lambda, and how Prisma works in Lambda.
 
+[依存関係のバンドルに関する補足記事はこちら](https://tmokmss.hatenablog.com/entry/20220509/1652103822)。 (An additional article about bundling Node.js dependencies.)
+
 ## Architecture
 This sample consists of the following AWS services:
 
