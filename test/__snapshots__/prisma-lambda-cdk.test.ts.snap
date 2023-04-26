@@ -39,7 +39,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:b2b64c0bae08aa32aff43f3803a36a4742c04e2dead5a0289bc86571dfb76c46",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:8673c7c6df9bd2e508ee70379bfe386446d7dcdf0ad0bf81fc1845c5f6f30c34",
           },
         },
         "Environment": Object {
@@ -184,7 +184,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:b2b64c0bae08aa32aff43f3803a36a4742c04e2dead5a0289bc86571dfb76c46",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:8673c7c6df9bd2e508ee70379bfe386446d7dcdf0ad0bf81fc1845c5f6f30c34",
           },
         },
         "Environment": Object {
@@ -336,7 +336,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "d109d417924f89c0320fce179733806b439e7d865ea74444d1f5de83f6398b5b.zip",
+          "S3Key": "4c1c208ce0e818f31dda28ee39742a59463758302e708d4648224ec696b11bb1.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -484,7 +484,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "efd25bc802d5f4e3e8b6e73dfeb0009ca2b0b5befb2416ed635039f3a5d9d757.zip",
+          "S3Key": "8a4563dc31f4ac9f67abca2f2960f1f5ded2b02c333a29957c6f6c75f522d0c4.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -639,12 +639,12 @@ Object {
       "DeletionPolicy": "Snapshot",
       "Properties": Object {
         "CopyTagsToSnapshot": true,
-        "DBClusterParameterGroupName": "default.aurora-mysql5.7",
+        "DBClusterParameterGroupName": "default.aurora-mysql8.0",
         "DBSubnetGroupName": Object {
           "Ref": "DatabaseClusterSubnets5540150D",
         },
         "Engine": "aurora-mysql",
-        "EngineVersion": "5.7.mysql_aurora.2.10.2",
+        "EngineVersion": "8.0.mysql_aurora.3.03.0",
         "MasterUserPassword": Object {
           "Fn::Join": Array [
             "",
