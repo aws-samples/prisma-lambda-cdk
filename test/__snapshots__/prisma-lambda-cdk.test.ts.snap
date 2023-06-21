@@ -682,28 +682,6 @@ Object {
       "Type": "AWS::RDS::DBCluster",
       "UpdateReplacePolicy": "Snapshot",
     },
-    "DatabaseClusterInstance1078CC457": Object {
-      "DeletionPolicy": "Delete",
-      "DependsOn": Array [
-        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
-        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
-        "VpcPrivateSubnet2DefaultRoute060D2087",
-        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
-      ],
-      "Properties": Object {
-        "DBClusterIdentifier": Object {
-          "Ref": "DatabaseCluster5B53A178",
-        },
-        "DBInstanceClass": "db.t3.medium",
-        "DBSubnetGroupName": Object {
-          "Ref": "DatabaseClusterSubnets5540150D",
-        },
-        "Engine": "aurora-mysql",
-        "PubliclyAccessible": false,
-      },
-      "Type": "AWS::RDS::DBInstance",
-      "UpdateReplacePolicy": "Delete",
-    },
     "DatabaseClusterSecretAttachmentDC8466C0": Object {
       "Properties": Object {
         "SecretId": Object {
@@ -753,6 +731,26 @@ Object {
         ],
       },
       "Type": "AWS::RDS::DBSubnetGroup",
+    },
+    "DatabaseClusterWriterD43085C6": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
+      ],
+      "Properties": Object {
+        "DBClusterIdentifier": Object {
+          "Ref": "DatabaseCluster5B53A178",
+        },
+        "DBInstanceClass": "db.t3.medium",
+        "Engine": "aurora-mysql",
+        "PromotionTier": 0,
+        "PubliclyAccessible": false,
+      },
+      "Type": "AWS::RDS::DBInstance",
+      "UpdateReplacePolicy": "Delete",
     },
     "DatabaseSecurityGroup5C91FDCB": Object {
       "Properties": Object {
