@@ -673,7 +673,7 @@ Object {
         "VpcSecurityGroupIds": Array [
           Object {
             "Fn::GetAtt": Array [
-              "DatabaseSecurityGroup5C91FDCB",
+              "DatabaseClusterSecurityGroupFEF1426A",
               "GroupId",
             ],
           },
@@ -718,6 +718,53 @@ Object {
       "Type": "AWS::SecretsManager::Secret",
       "UpdateReplacePolicy": "Delete",
     },
+    "DatabaseClusterSecurityGroupFEF1426A": Object {
+      "Properties": Object {
+        "GroupDescription": "RDS security group",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "Vpc8378EB38",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "DatabaseClusterSecurityGroupfromMyTestStackApplicationSecurityGroupBD072B80IndirectPortE5C27727": Object {
+      "Properties": Object {
+        "Description": "from MyTestStackApplicationSecurityGroupBD072B80:{IndirectPort}",
+        "FromPort": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseCluster5B53A178",
+            "Endpoint.Port",
+          ],
+        },
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseClusterSecurityGroupFEF1426A",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "ApplicationSecurityGroup0110FDEE",
+            "GroupId",
+          ],
+        },
+        "ToPort": Object {
+          "Fn::GetAtt": Array [
+            "DatabaseCluster5B53A178",
+            "Endpoint.Port",
+          ],
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
     "DatabaseClusterSubnets5540150D": Object {
       "Properties": Object {
         "DBSubnetGroupDescription": "Subnets for Cluster database",
@@ -751,53 +798,6 @@ Object {
       },
       "Type": "AWS::RDS::DBInstance",
       "UpdateReplacePolicy": "Delete",
-    },
-    "DatabaseSecurityGroup5C91FDCB": Object {
-      "Properties": Object {
-        "GroupDescription": "MyTestStack/Database/SecurityGroup",
-        "SecurityGroupEgress": Array [
-          Object {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1",
-          },
-        ],
-        "VpcId": Object {
-          "Ref": "Vpc8378EB38",
-        },
-      },
-      "Type": "AWS::EC2::SecurityGroup",
-    },
-    "DatabaseSecurityGroupfromMyTestStackApplicationSecurityGroupBD072B80IndirectPort695F14E8": Object {
-      "Properties": Object {
-        "Description": "from MyTestStackApplicationSecurityGroupBD072B80:{IndirectPort}",
-        "FromPort": Object {
-          "Fn::GetAtt": Array [
-            "DatabaseCluster5B53A178",
-            "Endpoint.Port",
-          ],
-        },
-        "GroupId": Object {
-          "Fn::GetAtt": Array [
-            "DatabaseSecurityGroup5C91FDCB",
-            "GroupId",
-          ],
-        },
-        "IpProtocol": "tcp",
-        "SourceSecurityGroupId": Object {
-          "Fn::GetAtt": Array [
-            "ApplicationSecurityGroup0110FDEE",
-            "GroupId",
-          ],
-        },
-        "ToPort": Object {
-          "Fn::GetAtt": Array [
-            "DatabaseCluster5B53A178",
-            "Endpoint.Port",
-          ],
-        },
-      },
-      "Type": "AWS::EC2::SecurityGroupIngress",
     },
     "Vpc8378EB38": Object {
       "Properties": Object {

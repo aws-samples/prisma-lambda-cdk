@@ -10,16 +10,11 @@ interface DatabaseProps {
 export class Database extends Construct {
   readonly cluster: rds.DatabaseCluster;
   readonly secret: secretsmanager.ISecret;
-  private readonly securityGroup: ec2.ISecurityGroup;
 
   constructor(scope: Construct, id: string, props: DatabaseProps) {
     super(scope, id);
 
     const vpc = props.vpc;
-
-    const securityGroup = new ec2.SecurityGroup(this, "SecurityGroup", {
-      vpc,
-    });
 
     const cluster = new rds.DatabaseCluster(this, "Cluster", {
       // Please read README.md ### Using Postgres section if you want to use Postgres
@@ -30,16 +25,14 @@ export class Database extends Construct {
       }),
       vpc,
       vpcSubnets: vpc.selectSubnets({ subnets: vpc.isolatedSubnets.concat(vpc.privateSubnets) }),
-      securityGroups: [securityGroup],
       storageEncrypted: true,
     });
 
     this.cluster = cluster;
     this.secret = cluster.secret!;
-    this.securityGroup = securityGroup;
   }
 
   allowInboundAccess(peer: ec2.IPeer) {
-    this.securityGroup.addIngressRule(peer, ec2.Port.tcp(this.cluster.clusterEndpoint.port));
+    this.cluster.connections.allowDefaultPortFrom(peer);
   }
 }
