@@ -2,6 +2,9 @@ name: Update snapshot
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+       - 'dependabot/**'
 
 jobs:
   update:
