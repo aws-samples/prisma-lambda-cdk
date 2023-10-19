@@ -1,5 +1,5 @@
 {
-  "name": "prisma-lambda-cdk",
+  "name": "@aws-samples/prisma-lambda-cdk",
   "version": "0.1.0",
   "bin": {
     "prisma-lambda-cdk": "bin/prisma-lambda-cdk.js"
