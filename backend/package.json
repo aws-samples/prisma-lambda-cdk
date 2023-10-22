@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@aws-samples/backend",
   "private": true,
   "dependencies": {
     "@prisma/client": "^4.0.0"
