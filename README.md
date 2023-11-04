@@ -103,7 +103,7 @@ Check `response.json` and see the records you created.
 If you want to use Postgres instead of MySQL, you must change the following code:
 
 * [`backend/prisma/schema.prisma`](backend/prisma/schema.prisma)
-  * Set `privider` to `postgresql`
+  * Set `provider` to `postgresql`
 * [`backend/prisma/.env`](backend/prisma/.env)
   * Replace `DATABASE_ENGNIE` to `postgres` and `DATABASE_PORT` to `5432` (or a port number you use)
 * [`lib/construct/database.ts`](lib/construct/database.ts)
