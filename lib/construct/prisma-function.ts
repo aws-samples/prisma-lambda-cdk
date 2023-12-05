@@ -30,7 +30,7 @@ export class PrismaFunction extends lambdanode.NodejsFunction {
         commandHooks: {
           beforeInstall: (i, o) => [
             // Copy prisma directory to Lambda code asset
-            // the directory must be located at the same directory as your Lambda code
+            // the directory must be placed on the same directory as your Lambda code
             `cp -r ${i}/prisma ${o}`,
           ],
           beforeBundling: (i, o) => [],

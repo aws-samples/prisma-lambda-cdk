@@ -39,7 +39,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:1a2f129861bdfcf8ed2c5c29d190ecfefdd729368117def7e0d039c6ed74b999",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:8df35de8956b477450c060dc0072ac4fac36c4f67828325d946902b694c626a2",
           },
         },
         "Environment": Object {
@@ -184,7 +184,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "ImageUri": Object {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:1a2f129861bdfcf8ed2c5c29d190ecfefdd729368117def7e0d039c6ed74b999",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:8df35de8956b477450c060dc0072ac4fac36c4f67828325d946902b694c626a2",
           },
         },
         "Environment": Object {
@@ -336,7 +336,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "eadfbe79eed7ab2a22a911ef6b9d66fca5d953e1291e1daf82e7dd831182b4c2.zip",
+          "S3Key": "48dd93dd57a1891430d84b019f1752295d7123ddfaa3a1711d9a4b08401ea1b6.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -399,7 +399,7 @@ Object {
             "Arn",
           ],
         },
-        "Runtime": "nodejs18.x",
+        "Runtime": "nodejs20.x",
         "Timeout": 15,
         "VpcConfig": Object {
           "SecurityGroupIds": Array [
@@ -484,7 +484,7 @@ Object {
           "S3Bucket": Object {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "2d5dc1cda7681d01a8768a345b4f6f79aa16ce802c2b3c407f6709bba655348a.zip",
+          "S3Key": "80d6138c8067c710a73339b9535902163f0c3a29c7a8c6299a9ac26b3d6da516.zip",
         },
         "Environment": Object {
           "Variables": Object {
@@ -547,7 +547,7 @@ Object {
             "Arn",
           ],
         },
-        "Runtime": "nodejs18.x",
+        "Runtime": "nodejs20.x",
         "Timeout": 60,
         "VpcConfig": Object {
           "SecurityGroupIds": Array [

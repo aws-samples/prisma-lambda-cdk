@@ -27,7 +27,7 @@ export class Application extends Construct {
     const handler = new PrismaFunction(this, "Handler", {
       entry: "./backend/handler.ts",
       memorySize: 256,
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_20_X,
       timeout: cdk.Duration.seconds(15),
       vpc,
       securityGroups: [securityGroup],
@@ -38,7 +38,7 @@ export class Application extends Construct {
     const migrationRunner = new PrismaFunction(this, "MigrationRunner", {
       entry: "./backend/migration-runner.ts",
       memorySize: 256,
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_20_X,
       timeout: cdk.Duration.minutes(1),
       vpc,
       securityGroups: [securityGroup],
