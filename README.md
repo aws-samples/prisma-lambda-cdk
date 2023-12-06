@@ -108,7 +108,7 @@ If you want to use Postgres instead of MySQL, you must change the following code
   * Replace `DATABASE_ENGNIE` to `postgres` and `DATABASE_PORT` to `5432` (or a port number you use)
 * [`lib/construct/database.ts`](lib/construct/database.ts)
   * Set `engine` to a postgres version you want to use
-  * Please refer to [class `AuroraPostgresEngineVersion` document](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-rds.AuroraPostgresEngineVersion.html) for the available values
+  * Please refer to [class `AuroraPostgresEngineVersion` document](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_rds.AuroraPostgresEngineVersion.html) for the available values
 
 **NOTE**: Not all the combination of DB instance types and DB engines are supported in Amazon Aurora.
 Please check [Supported DB engines for DB instance classes](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.SupportAurora) and set `instanceType` accordingly.
