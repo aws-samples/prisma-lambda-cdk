@@ -3,8 +3,9 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import { DatabaseConnectionProps, PrismaFunction } from "./prisma-function";
 import { Construct } from "constructs";
 import { DockerPrismaFunction } from "./docker-prisma-function";
-import { DockerImageCode, Runtime } from "aws-cdk-lib/aws-lambda";
+import { DockerImageCode, Function, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Platform } from "aws-cdk-lib/aws-ecr-assets";
+import { InvocationType, Trigger } from "aws-cdk-lib/triggers";
 
 interface ApplicationProps {
   vpc: ec2.IVpc;
@@ -13,6 +14,7 @@ interface ApplicationProps {
 
 export class Application extends Construct {
   readonly lambdaSecurityGroup: ec2.ISecurityGroup;
+  readonly migrationHandler: Function;
 
   constructor(scope: Construct, id: string, props: ApplicationProps) {
     super(scope, id);
@@ -72,5 +74,6 @@ export class Application extends Construct {
     new cdk.CfnOutput(this, `MigrationRunnerLambdaArn`, { value: migrationRunner.functionArn });
 
     this.lambdaSecurityGroup = securityGroup;
+    this.migrationHandler = migrationRunner;;
   }
 }

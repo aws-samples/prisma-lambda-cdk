@@ -28,6 +28,84 @@ Object {
     },
   },
   "Resources": Object {
+    "AWSCDKTriggerCustomResourceProviderCustomResourceProviderHandler97BECD91": Object {
+      "DependsOn": Array [
+        "AWSCDKTriggerCustomResourceProviderCustomResourceProviderRoleE18FAF0A",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "ac4a1bd8c7c7879385a212db2c46b2cb8f9e23b91c993d826d478bff7dbc0af3.zip",
+        },
+        "Handler": "__entrypoint__.handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "AWSCDKTriggerCustomResourceProviderCustomResourceProviderRoleE18FAF0A",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AWSCDKTriggerCustomResourceProviderCustomResourceProviderRoleE18FAF0A": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+        "Policies": Array [
+          Object {
+            "PolicyDocument": Object {
+              "Statement": Array [
+                Object {
+                  "Action": Array [
+                    "lambda:InvokeFunction",
+                  ],
+                  "Effect": "Allow",
+                  "Resource": Array [
+                    Object {
+                      "Fn::Join": Array [
+                        "",
+                        Array [
+                          Object {
+                            "Fn::GetAtt": Array [
+                              "ApplicationMigrationRunner12D5DD07",
+                              "Arn",
+                            ],
+                          },
+                          ":*",
+                        ],
+                      ],
+                    },
+                  ],
+                },
+              ],
+              "Version": "2012-10-17",
+            },
+            "PolicyName": "Inline",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
     "ApplicationDockerHandlerF8248C01": Object {
       "DependsOn": Array [
         "ApplicationDockerHandlerServiceRole80C82910",
@@ -570,6 +648,20 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
+    "ApplicationMigrationRunnerCurrentVersionA30A70BEa4c2ed52e3ca9fa06a86abde1ff158db": Object {
+      "DependsOn": Array [
+        "VpcPrivateSubnet1DefaultRouteBE02A9ED",
+        "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
+        "VpcPrivateSubnet2DefaultRoute060D2087",
+        "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
+      ],
+      "Properties": Object {
+        "FunctionName": Object {
+          "Ref": "ApplicationMigrationRunner12D5DD07",
+        },
+      },
+      "Type": "AWS::Lambda::Version",
+    },
     "ApplicationMigrationRunnerServiceRoleCD71EB3F": Object {
       "DependsOn": Array [
         "VpcPrivateSubnet1DefaultRouteBE02A9ED",
@@ -797,6 +889,34 @@ Object {
         "PubliclyAccessible": false,
       },
       "Type": "AWS::RDS::DBInstance",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "MigrationTrigger": Object {
+      "DeletionPolicy": "Delete",
+      "DependsOn": Array [
+        "DatabaseCluster5B53A178",
+        "DatabaseClusterSecretAttachmentDC8466C0",
+        "DatabaseClusterSecretD1FB634F",
+        "DatabaseClusterSecurityGroupfromMyTestStackApplicationSecurityGroupBD072B80IndirectPortE5C27727",
+        "DatabaseClusterSecurityGroupFEF1426A",
+        "DatabaseClusterSubnets5540150D",
+        "DatabaseClusterWriterD43085C6",
+      ],
+      "Properties": Object {
+        "ExecuteOnHandlerChange": true,
+        "HandlerArn": Object {
+          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BEa4c2ed52e3ca9fa06a86abde1ff158db",
+        },
+        "InvocationType": "RequestResponse",
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "AWSCDKTriggerCustomResourceProviderCustomResourceProviderHandler97BECD91",
+            "Arn",
+          ],
+        },
+        "Timeout": "120000",
+      },
+      "Type": "Custom::Trigger",
       "UpdateReplacePolicy": "Delete",
     },
     "Vpc8378EB38": Object {
