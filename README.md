@@ -60,8 +60,11 @@ To see how Prisma works with AWS Lambda, you can run the Lambda functions to app
 Although you can invoke a Lambda function from AWS Lambda management console, AWS SDK, AWS CLI, etc, we only cover AWS CLI way in this document. Please check [Developer Guide - Invoking AWS Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html) for further information.
 
 ### Apply database schema
-You must create a database and a table first.
-We use [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate) to apply a database schema and run it from a Lambda function.
+You must create a database and a table after provisioning an Aurora cluster. We use [Prisma Migrate](https://www.prisma.io/docs/concepts/components/prisma-migrate) to apply a database schema and run it from a Lambda function.
+
+In this sample, migration is executed during CDK deployment using [cdk.Trigger](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.triggers.Trigger.html).
+
+Instead, you can also run the migration outside of CDK, which is ideal for separating database migration from a CDK deployment.
 
 You can invoke the migration function by the following command:
 

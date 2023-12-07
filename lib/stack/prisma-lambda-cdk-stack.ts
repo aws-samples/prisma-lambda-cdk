@@ -1,8 +1,9 @@
-import * as cdk from 'aws-cdk-lib';
-import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as cdk from "aws-cdk-lib";
+import * as ec2 from "aws-cdk-lib/aws-ec2";
 import { Database } from "../construct/database";
 import { Application } from "../construct/application";
-import { Construct } from 'constructs';
+import { Construct } from "constructs";
+import { Trigger } from "aws-cdk-lib/triggers";
 
 export class PrismaLambdaCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -29,5 +30,12 @@ export class PrismaLambdaCdkStack extends cdk.Stack {
     });
 
     database.allowInboundAccess(application.lambdaSecurityGroup);
+
+    // run database migration during CDK deployment
+    const trigger = new Trigger(this, "MigrationTrigger", {
+      handler: application.migrationHandler,
+    });
+    // make sure migration is executed after the database cluster is available.
+    trigger.node.addDependency(database.cluster);
   }
 }
