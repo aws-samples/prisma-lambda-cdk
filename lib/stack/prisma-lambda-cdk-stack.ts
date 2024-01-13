@@ -25,6 +25,8 @@ export class PrismaLambdaCdkStack extends cdk.Stack {
         // You should create a database user with minimal privileges for your application.
         // Also refer to: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.MasterAccounts.html
         username: database.secret.secretValueFromJson("username").toString(),
+        // Prisma expects connection URL values to be URL-encoded (common in password strings)
+        // Also refer to: https://www.prisma.io/docs/orm/reference/connection-urls#special-characters
         password: encodeURIComponent(database.secret.secretValueFromJson("password").toString()),
       },
     });
