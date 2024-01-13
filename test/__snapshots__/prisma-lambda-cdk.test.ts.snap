@@ -761,6 +761,10 @@ Object {
             ],
           ],
         },
+        "ServerlessV2ScalingConfiguration": Object {
+          "MaxCapacity": 2,
+          "MinCapacity": 0.5,
+        },
         "StorageEncrypted": true,
         "VpcSecurityGroupIds": Array [
           Object {
@@ -883,8 +887,10 @@ Object {
         "DBClusterIdentifier": Object {
           "Ref": "DatabaseCluster5B53A178",
         },
-        "DBInstanceClass": "db.t3.medium",
+        "DBInstanceClass": "db.serverless",
+        "EnablePerformanceInsights": true,
         "Engine": "aurora-mysql",
+        "PerformanceInsightsRetentionPeriod": 7,
         "PromotionTier": 0,
         "PubliclyAccessible": false,
       },
