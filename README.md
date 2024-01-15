@@ -95,7 +95,7 @@ You can see [`prisma.schema`](backend/prisma/schema.prisma) and [`handler.ts`](b
 You can get records by invoking the Lambda function that we invoked in the last step with a different parameter:
 
 ```sh
-aws lambda invoke --function-name ApplicationHandlerLambdaArn --cli-binary-format raw-in-base64-out --payload '{"command":"get"}' response.json response.json
+aws lambda invoke --function-name ApplicationHandlerLambdaArn --cli-binary-format raw-in-base64-out --payload '{"command":"get"}' response.json
 ```
 
 **NOTE**: You would't need `cli-binary-format` parameter if you use AWS CLI v1.
