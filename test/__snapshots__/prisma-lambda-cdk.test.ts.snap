@@ -884,6 +884,7 @@ Object {
         "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": Object {
+        "CACertificateIdentifier": "rds-ca-ecc384-g1",
         "DBClusterIdentifier": Object {
           "Ref": "DatabaseCluster5B53A178",
         },

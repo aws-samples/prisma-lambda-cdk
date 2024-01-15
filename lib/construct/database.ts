@@ -23,6 +23,7 @@ export class Database extends Construct {
       engine,
       writer: rds.ClusterInstance.serverlessV2("Writer", {
         enablePerformanceInsights: true,
+        caCertificate: rds.CaCertificate.RDS_CA_ECC384_G1,
       }),
       vpc,
       vpcSubnets: vpc.selectSubnets({ subnets: vpc.isolatedSubnets.concat(vpc.privateSubnets) }),
