@@ -24,6 +24,9 @@ export class PrismaFunction extends lambdanode.NodejsFunction {
         DATABASE_ENGINE: props.database.engine,
         DATABASE_USER: props.database.username,
         DATABASE_PASSWORD: props.database.password,
+        // Aurora Serverless v2 cold start takes up to 15 seconds
+        // https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/databases-connections/connection-pool
+        DATABASE_OPTION: "?pool_timeout=20&connect_timeout=20",
       },
       bundling: {
         nodeModules: ["prisma", "@prisma/client"].concat(props.bundling?.nodeModules ?? []),
