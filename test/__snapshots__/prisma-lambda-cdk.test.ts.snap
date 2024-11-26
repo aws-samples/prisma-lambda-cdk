@@ -249,7 +249,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "Code": {
           "ImageUri": {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:e953af279fa2bd337f7e8b363c7dfd3e8f74002ab1e54e14788092bff16838f0",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:6edf8cdd487d9e36c927290999b3c7534c5d2aa2622d720ebd2e24cdfc4539e6",
           },
         },
         "Environment": {
@@ -395,7 +395,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "Code": {
           "ImageUri": {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:e953af279fa2bd337f7e8b363c7dfd3e8f74002ab1e54e14788092bff16838f0",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:6edf8cdd487d9e36c927290999b3c7534c5d2aa2622d720ebd2e24cdfc4539e6",
           },
         },
         "Environment": {
