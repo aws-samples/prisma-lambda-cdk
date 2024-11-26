@@ -84,7 +84,7 @@ Now that you successfully initalized a database and created a table, let's check
 You can create a record to the table by invoking another Lambda function by the following command:
 
 ```sh
-aws lambda invoke --function-name ApplicationHandlerLambdaArn response.json
+aws lambda invoke --function-name ApplicationHandlerLambdaArn /dev/stdout
 ```
 
 Please replace `ApplicationHandlerLambdaArn` with the actual ARN you wrote down in the previous deployment step.
@@ -111,7 +111,8 @@ If you want to use Postgres instead of MySQL, you must change the following code
   * Replace `DATABASE_ENGNIE` to `postgres` and `DATABASE_PORT` to `5432` (or a port number you use)
 * [`lib/construct/database.ts`](lib/construct/database.ts)
   * Set `engine` to a postgres version you want to use
-  * Please refer to [class `AuroraPostgresEngineVersion` document](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_rds.AuroraPostgresEngineVersion.html) for the available values
+    * Please refer to [class `AuroraPostgresEngineVersion` document](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_rds.AuroraPostgresEngineVersion.html) for the available values
+  * Set Database parameter group for closing idle connection ([`idle_session_timeout`](https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-IDLE-SESSION-TIMEOUT))
 
 **NOTE**: Not all the combination of DB instance types and DB engines are supported in Amazon Aurora.
 Please check [Supported DB engines for DB instance classes](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html#Concepts.DBInstanceClass.SupportAurora) and set `instanceType` accordingly.
@@ -184,7 +185,7 @@ npx cdk deploy --require-approval never
 Now you can apply the migration by invoking the Lambda function:
 
 ```sh
-aws lambda invoke --function-name ApplicationMigrationRunnerLambdaArn response.json
+aws lambda invoke --function-name ApplicationMigrationRunnerLambdaArn /dev/stdout
 ```
 
 This is how you can modify database schema in a production-ready way. You can also invoke the Lambda function from a CI/CD pipeline.
@@ -207,7 +208,7 @@ cd ../
 npx cdk deploy --require-approval never
 
 # execute after deployment
-aws lambda invoke --function-name ApplicationMigrationRunnerLambdaArn --cli-binary-format raw-in-base64-out --payload '{"command":"reset"}' response.json
+aws lambda invoke --function-name ApplicationMigrationRunnerLambdaArn --cli-binary-format raw-in-base64-out --payload '{"command":"reset"}' /dev/stdout
 ```
 
 By sending `reset` command to the migration Lambda function, it executes `prisma migrate reset`, which removes old databases and creates new one with the new table schema.  
@@ -217,6 +218,15 @@ You can access a database from a Lambda function the same way as other ordinary 
 Please check the actual code [`handler.ts`](backend/handler.ts) to see how you can use Prisma in AWS Lambda.
 
 There is additional things you might want to consider, for example, database connection management on serverless environment. Please check the following documents for further information: [Prisma - Connection management](https://www.prisma.io/docs/guides/performance-and-optimization/connection-management/#serverless-environments-faas), [Using Amazon RDS Proxy with AWS Lambda](https://aws.amazon.com/blogs/compute/using-amazon-rds-proxy-with-aws-lambda/)
+
+### Using Prisma with Aurora Serverless v2 scaling to zero
+
+When you use Prisma with [Aurora Serverless v2 automatic pause feature](https://aws.amazon.com/blogs/database/introducing-scaling-to-0-capacity-with-amazon-aurora-serverless-v2/), you may want to configure the following:
+
+1. **set idle connection timeout on RDB side to lower value**: Aurora will scale in to zero capacity when there is no active connection. That is why when connection is live in a connection pool, it does not scale to zero. DB Parameters like [`wait_timeout`](https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_wait_timeout) allows it to automatically close idle connections, letting Aurora Serverless v2 scale in within the desired period.
+2. **set connection timeout on Prisma side to higher value**: When Aurora scales up from zero capacity, it takes up to 15 seconds before accepting a connection. Prisma must wait more than the period when it spins up a new connection. You can set `pool_timeout` and `connect_timeout` ([MySQL](https://www.prisma.io/docs/orm/overview/databases/mysql#arguments), [Postgres](https://www.prisma.io/docs/orm/overview/databases/postgresql#arguments)).
+
+All of the above are already configured in this repo. You can check `database.ts` and `prisma-function.ts` to see how it is working.
 
 ## Clean up
 To avoid incurring future charges, clean up the resources you created.

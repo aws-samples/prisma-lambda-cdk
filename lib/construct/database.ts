@@ -17,14 +17,15 @@ export class Database extends Construct {
     const vpc = props.vpc;
 
     // Please read README.md ### Using Postgres section if you want to use Postgres
-    // engine = rds.DatabaseClusterEngine.auroraPostgres({ version: rds.AuroraPostgresEngineVersion.VER_15_2 }),
-    const engine = rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_3_03_0 });
+    // engine = rds.DatabaseClusterEngine.auroraPostgres({ version: rds.AuroraPostgresEngineVersion.VER_16_6 }),
+    const engine = rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_3_08_0 });
     const cluster = new rds.DatabaseCluster(this, "Cluster", {
       engine,
       writer: rds.ClusterInstance.serverlessV2("Writer", {
         enablePerformanceInsights: true,
-        caCertificate: rds.CaCertificate.RDS_CA_ECC384_G1,
+        autoMinorVersionUpgrade: true,
       }),
+      serverlessV2MinCapacity: 0,
       vpc,
       vpcSubnets: vpc.selectSubnets({ subnets: vpc.isolatedSubnets.concat(vpc.privateSubnets) }),
       storageEncrypted: true,
@@ -32,6 +33,15 @@ export class Database extends Construct {
       // see: https://www.prisma.io/docs/orm/reference/connection-urls#special-characters
       credentials: rds.Credentials.fromUsername(engine.defaultUsername ?? "admin", {
         excludeCharacters: " %+~`#$&*()|[]{}:;<>?!'/@\"\\,=^",
+      }),
+      parameterGroup: new rds.ParameterGroup(this, "ParameterGroup", {
+        engine,
+        parameters: {
+          // Close idle connection after 60 seconds for Aurora auto-pause
+          wait_timeout: "60",
+          // For Postgres cluster, use this instead
+          // idle_session_timeout: "60000",
+        },
       }),
     });
 

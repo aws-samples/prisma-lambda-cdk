@@ -2,6 +2,130 @@
 
 exports[`Snapshot test 1`] = `
 {
+  "Mappings": {
+    "LatestNodeRuntimeMap": {
+      "af-south-1": {
+        "value": "nodejs20.x",
+      },
+      "ap-east-1": {
+        "value": "nodejs20.x",
+      },
+      "ap-northeast-1": {
+        "value": "nodejs20.x",
+      },
+      "ap-northeast-2": {
+        "value": "nodejs20.x",
+      },
+      "ap-northeast-3": {
+        "value": "nodejs20.x",
+      },
+      "ap-south-1": {
+        "value": "nodejs20.x",
+      },
+      "ap-south-2": {
+        "value": "nodejs20.x",
+      },
+      "ap-southeast-1": {
+        "value": "nodejs20.x",
+      },
+      "ap-southeast-2": {
+        "value": "nodejs20.x",
+      },
+      "ap-southeast-3": {
+        "value": "nodejs20.x",
+      },
+      "ap-southeast-4": {
+        "value": "nodejs20.x",
+      },
+      "ap-southeast-5": {
+        "value": "nodejs20.x",
+      },
+      "ap-southeast-7": {
+        "value": "nodejs20.x",
+      },
+      "ca-central-1": {
+        "value": "nodejs20.x",
+      },
+      "ca-west-1": {
+        "value": "nodejs20.x",
+      },
+      "cn-north-1": {
+        "value": "nodejs18.x",
+      },
+      "cn-northwest-1": {
+        "value": "nodejs18.x",
+      },
+      "eu-central-1": {
+        "value": "nodejs20.x",
+      },
+      "eu-central-2": {
+        "value": "nodejs20.x",
+      },
+      "eu-isoe-west-1": {
+        "value": "nodejs18.x",
+      },
+      "eu-north-1": {
+        "value": "nodejs20.x",
+      },
+      "eu-south-1": {
+        "value": "nodejs20.x",
+      },
+      "eu-south-2": {
+        "value": "nodejs20.x",
+      },
+      "eu-west-1": {
+        "value": "nodejs20.x",
+      },
+      "eu-west-2": {
+        "value": "nodejs20.x",
+      },
+      "eu-west-3": {
+        "value": "nodejs20.x",
+      },
+      "il-central-1": {
+        "value": "nodejs20.x",
+      },
+      "me-central-1": {
+        "value": "nodejs20.x",
+      },
+      "me-south-1": {
+        "value": "nodejs20.x",
+      },
+      "mx-central-1": {
+        "value": "nodejs20.x",
+      },
+      "sa-east-1": {
+        "value": "nodejs20.x",
+      },
+      "us-east-1": {
+        "value": "nodejs20.x",
+      },
+      "us-east-2": {
+        "value": "nodejs20.x",
+      },
+      "us-gov-east-1": {
+        "value": "nodejs18.x",
+      },
+      "us-gov-west-1": {
+        "value": "nodejs18.x",
+      },
+      "us-iso-east-1": {
+        "value": "nodejs18.x",
+      },
+      "us-iso-west-1": {
+        "value": "nodejs18.x",
+      },
+      "us-isob-east-1": {
+        "value": "nodejs18.x",
+      },
+      "us-west-1": {
+        "value": "nodejs20.x",
+      },
+      "us-west-2": {
+        "value": "nodejs20.x",
+      },
+    },
+  },
   "Outputs": {
     "ApplicationHandlerLambdaArnB02DA89F": {
       "Value": {
@@ -37,7 +161,7 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "ac4a1bd8c7c7879385a212db2c46b2cb8f9e23b91c993d826d478bff7dbc0af3.zip",
+          "S3Key": "b222f755382b5b2cc93040db74cfcd74e7ac8aabff0a3a70e3d1c0f20bc8c014.zip",
         },
         "Handler": "__entrypoint__.handler",
         "MemorySize": 128,
@@ -47,7 +171,15 @@ exports[`Snapshot test 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs18.x",
+        "Runtime": {
+          "Fn::FindInMap": [
+            "LatestNodeRuntimeMap",
+            {
+              "Ref": "AWS::Region",
+            },
+            "value",
+          ],
+        },
         "Timeout": 900,
       },
       "Type": "AWS::Lambda::Function",
@@ -117,7 +249,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "Code": {
           "ImageUri": {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:8df35de8956b477450c060dc0072ac4fac36c4f67828325d946902b694c626a2",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:e953af279fa2bd337f7e8b363c7dfd3e8f74002ab1e54e14788092bff16838f0",
           },
         },
         "Environment": {
@@ -140,6 +272,7 @@ exports[`Snapshot test 1`] = `
                 "Endpoint.Address",
               ],
             },
+            "DATABASE_OPTION": "?pool_timeout=20&connect_timeout=20",
             "DATABASE_PASSWORD": {
               "Fn::Join": [
                 "",
@@ -262,7 +395,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "Code": {
           "ImageUri": {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:8df35de8956b477450c060dc0072ac4fac36c4f67828325d946902b694c626a2",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:e953af279fa2bd337f7e8b363c7dfd3e8f74002ab1e54e14788092bff16838f0",
           },
         },
         "Environment": {
@@ -285,6 +418,7 @@ exports[`Snapshot test 1`] = `
                 "Endpoint.Address",
               ],
             },
+            "DATABASE_OPTION": "?pool_timeout=20&connect_timeout=20",
             "DATABASE_PASSWORD": {
               "Fn::Join": [
                 "",
@@ -414,11 +548,10 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "48dd93dd57a1891430d84b019f1752295d7123ddfaa3a1711d9a4b08401ea1b6.zip",
+          "S3Key": "f1fc040ba46b3eb0896f0755031ffba9473c990ce1a5b4fc93a2f496dd1464b9.zip",
         },
         "Environment": {
           "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
             "DATABASE_ENGINE": {
               "Fn::Join": [
                 "",
@@ -437,6 +570,7 @@ exports[`Snapshot test 1`] = `
                 "Endpoint.Address",
               ],
             },
+            "DATABASE_OPTION": "?pool_timeout=20&connect_timeout=20",
             "DATABASE_PASSWORD": {
               "Fn::Join": [
                 "",
@@ -562,11 +696,10 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "f76b89ac0d996582ead8271b012e33b96be5fecd64c7a9fef063d5257c511228.zip",
+          "S3Key": "640933b990391172040bd382ee80e3e64afaa0f7e199e9468c5365ae3b6d3189.zip",
         },
         "Environment": {
           "Variables": {
-            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
             "DATABASE_ENGINE": {
               "Fn::Join": [
                 "",
@@ -585,6 +718,7 @@ exports[`Snapshot test 1`] = `
                 "Endpoint.Address",
               ],
             },
+            "DATABASE_OPTION": "?pool_timeout=20&connect_timeout=20",
             "DATABASE_PASSWORD": {
               "Fn::Join": [
                 "",
@@ -648,7 +782,7 @@ exports[`Snapshot test 1`] = `
       },
       "Type": "AWS::Lambda::Function",
     },
-    "ApplicationMigrationRunnerCurrentVersionA30A70BE1a2ebb29ebb419991ec88512a6b4f71c": {
+    "ApplicationMigrationRunnerCurrentVersionA30A70BE685699bea70e8d4eafa83f164535f014": {
       "DependsOn": [
         "VpcPrivateSubnet1DefaultRouteBE02A9ED",
         "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
@@ -731,12 +865,14 @@ exports[`Snapshot test 1`] = `
       "DeletionPolicy": "Snapshot",
       "Properties": {
         "CopyTagsToSnapshot": true,
-        "DBClusterParameterGroupName": "default.aurora-mysql8.0",
+        "DBClusterParameterGroupName": {
+          "Ref": "DatabaseParameterGroup2A921026",
+        },
         "DBSubnetGroupName": {
           "Ref": "DatabaseClusterSubnets5540150D",
         },
         "Engine": "aurora-mysql",
-        "EngineVersion": "8.0.mysql_aurora.3.03.0",
+        "EngineVersion": "8.0.mysql_aurora.3.08.0",
         "MasterUserPassword": {
           "Fn::Join": [
             "",
@@ -763,7 +899,7 @@ exports[`Snapshot test 1`] = `
         },
         "ServerlessV2ScalingConfiguration": {
           "MaxCapacity": 2,
-          "MinCapacity": 0.5,
+          "MinCapacity": 0,
         },
         "StorageEncrypted": true,
         "VpcSecurityGroupIds": [
@@ -884,7 +1020,7 @@ exports[`Snapshot test 1`] = `
         "VpcPrivateSubnet2RouteTableAssociationA89CAD56",
       ],
       "Properties": {
-        "CACertificateIdentifier": "rds-ca-ecc384-g1",
+        "AutoMinorVersionUpgrade": true,
         "DBClusterIdentifier": {
           "Ref": "DatabaseCluster5B53A178",
         },
@@ -897,6 +1033,16 @@ exports[`Snapshot test 1`] = `
       },
       "Type": "AWS::RDS::DBInstance",
       "UpdateReplacePolicy": "Delete",
+    },
+    "DatabaseParameterGroup2A921026": {
+      "Properties": {
+        "Description": "Cluster parameter group for aurora-mysql8.0",
+        "Family": "aurora-mysql8.0",
+        "Parameters": {
+          "wait_timeout": "60",
+        },
+      },
+      "Type": "AWS::RDS::DBClusterParameterGroup",
     },
     "MigrationTrigger": {
       "DeletionPolicy": "Delete",
@@ -912,7 +1058,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "ExecuteOnHandlerChange": true,
         "HandlerArn": {
-          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BE1a2ebb29ebb419991ec88512a6b4f71c",
+          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BE685699bea70e8d4eafa83f164535f014",
         },
         "InvocationType": "RequestResponse",
         "ServiceToken": {
