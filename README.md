@@ -228,6 +228,11 @@ When you use Prisma with [Aurora Serverless v2 automatic pause feature](https://
 
 All of the above are already configured in this repo. You can check `database.ts` and `prisma-function.ts` to see how it is working.
 
+Also, we recommend to take a look at these articles before using automatic pause for larger workload:
+
+* [Choosing the minimum Aurora Serverless v2 capacity setting for a cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html#aurora-serverless-v2-examples-setting-capacity-range-for-cluster)
+* [Understanding how certain database parameters impact scaling in Amazon Aurora Serverless v2](https://aws.amazon.com/blogs/database/understanding-how-certain-database-parameters-impact-scaling-in-amazon-aurora-serverless-v2/)
+
 ## Clean up
 To avoid incurring future charges, clean up the resources you created.
 
