@@ -249,7 +249,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "Code": {
           "ImageUri": {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:e953af279fa2bd337f7e8b363c7dfd3e8f74002ab1e54e14788092bff16838f0",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:f24351eb470762005400295d9ac100b9c752d93a3e189dc91d1194daf59d088e",
           },
         },
         "Environment": {
@@ -395,7 +395,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "Code": {
           "ImageUri": {
-            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:e953af279fa2bd337f7e8b363c7dfd3e8f74002ab1e54e14788092bff16838f0",
+            "Fn::Sub": "\${AWS::AccountId}.dkr.ecr.\${AWS::Region}.\${AWS::URLSuffix}/cdk-hnb659fds-container-assets-\${AWS::AccountId}-\${AWS::Region}:f24351eb470762005400295d9ac100b9c752d93a3e189dc91d1194daf59d088e",
           },
         },
         "Environment": {
@@ -548,7 +548,7 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "f1fc040ba46b3eb0896f0755031ffba9473c990ce1a5b4fc93a2f496dd1464b9.zip",
+          "S3Key": "0a0d3fafc603a7640b3bfe80a83a7be1c576f87ff66f4aff4c576efe8c8450ca.zip",
         },
         "Environment": {
           "Variables": {
@@ -696,7 +696,7 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "640933b990391172040bd382ee80e3e64afaa0f7e199e9468c5365ae3b6d3189.zip",
+          "S3Key": "b58e7d3cdd2a82fe63d940716490458bdc8958b6500d881c20f545d03fd0cd97.zip",
         },
         "Environment": {
           "Variables": {
@@ -782,7 +782,7 @@ exports[`Snapshot test 1`] = `
       },
       "Type": "AWS::Lambda::Function",
     },
-    "ApplicationMigrationRunnerCurrentVersionA30A70BE685699bea70e8d4eafa83f164535f014": {
+    "ApplicationMigrationRunnerCurrentVersionA30A70BEccae2af3fee234d51ad28bf5991a01ec": {
       "DependsOn": [
         "VpcPrivateSubnet1DefaultRouteBE02A9ED",
         "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
@@ -1058,7 +1058,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "ExecuteOnHandlerChange": true,
         "HandlerArn": {
-          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BE685699bea70e8d4eafa83f164535f014",
+          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BEccae2af3fee234d51ad28bf5991a01ec",
         },
         "InvocationType": "RequestResponse",
         "ServiceToken": {
