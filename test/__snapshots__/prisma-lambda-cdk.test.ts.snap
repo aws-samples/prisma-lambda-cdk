@@ -548,7 +548,7 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "4d54065aea00ff2f601cfac13df09bb9211dd58b74f41667b26a03f0b1f6c95d.zip",
+          "S3Key": "192074c64537b7e378bab8e9d4223546a49e37d3d54583a53f9703082c6ad8fa.zip",
         },
         "Environment": {
           "Variables": {
@@ -696,7 +696,7 @@ exports[`Snapshot test 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "421186739803e286d4db9b369f34734b3a2598a3f1c50724b90ca936588f50b3.zip",
+          "S3Key": "b41581cf9c6f3174c8300c6442d0e051f9aad31505e96df6f3b808cea95ac5ce.zip",
         },
         "Environment": {
           "Variables": {
@@ -782,7 +782,7 @@ exports[`Snapshot test 1`] = `
       },
       "Type": "AWS::Lambda::Function",
     },
-    "ApplicationMigrationRunnerCurrentVersionA30A70BE112cd0b10c4abf19b776dba73f9a86d0": {
+    "ApplicationMigrationRunnerCurrentVersionA30A70BE69c55f1332b2388a1a19dc6208464c32": {
       "DependsOn": [
         "VpcPrivateSubnet1DefaultRouteBE02A9ED",
         "VpcPrivateSubnet1RouteTableAssociation70C59FA6",
@@ -1058,7 +1058,7 @@ exports[`Snapshot test 1`] = `
       "Properties": {
         "ExecuteOnHandlerChange": true,
         "HandlerArn": {
-          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BE112cd0b10c4abf19b776dba73f9a86d0",
+          "Ref": "ApplicationMigrationRunnerCurrentVersionA30A70BE69c55f1332b2388a1a19dc6208464c32",
         },
         "InvocationType": "RequestResponse",
         "ServiceToken": {
