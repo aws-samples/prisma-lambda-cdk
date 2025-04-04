@@ -17,5 +17,6 @@
     ]
   },
   "context": {
+    "@aws-cdk/cognito:logUserPoolClientSecretValue": false
   }
 }
